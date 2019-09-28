@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER,
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
+      livingInfo: DataTypes.STRING,
+      rating: DataTypes.INTEGER,
       birthday: DataTypes.DATE,
       private: DataTypes.BOOLEAN,
       photoPath: DataTypes.STRING,
@@ -14,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
   Student.associate = (models) => {
-    // Student.hasOne(models.User, {
-    //   targetKey: 'id',
-    //   as: 'user',
-    //   sourceKey: 'userId',
-    // });
+    Student.hasOne(models.User, {
+      foreignKey: 'id',
+      as: 'user',
+      sourceKey: 'userId',
+    });
   };
   return Student;
 };

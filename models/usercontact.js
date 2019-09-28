@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   UserContact.associate = (models) => {
     UserContact.hasOne(models.ContactType, {
-      sourceKey: 'typeId',
+      foreignKey: 'typeId',
       targetKey: 'id',
       as: 'type',
     });

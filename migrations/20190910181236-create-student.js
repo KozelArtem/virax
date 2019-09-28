@@ -17,8 +17,14 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING,
       },
+      livingInfo: { 
+        type: Sequelize.STRING 
+      },
       birthday: {
         type: Sequelize.DATE,
+      },
+      rating: {
+        type: Sequelize.INTEGER,
       },
       private: {
         type: Sequelize.BOOLEAN,
