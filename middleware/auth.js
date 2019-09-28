@@ -2,6 +2,12 @@ const passport = require('passport');
 
 module.exports = {
   requireAuth: (req, res, next) => {
-    return passport.authenticate('jwt', { session: false });
+    console.log('moddle');
+    
+    return passport.authenticate('jwt', { session: false, failWithError: true}, (err, user, info) => {
+      console.log(err, user, info);
+      
+    });
+    
   },
 };
