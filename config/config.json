@@ -6,5 +6,13 @@
     "host": "remotemysql.com",
     "dialect": "mysql",
     "operatorsAliases": false
+  },
+  "production": {
+    "username": "Iu3YeDDbrB",
+    "password": "i7c7hO98UE",
+    "database": "Iu3YeDDbrB",
+    "host": "remotemysql.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
   }
 }
