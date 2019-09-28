@@ -1,0 +1,12 @@
+{
+  "appName": "appName",
+  "secret": "secretKey",
+  "passwordSalt": 12,
+  "mailConfig": {
+    "service": "gmail",
+    "auth": {
+      "user": "virax.official.28@gmail.com",
+      "pass": "virax12345"
+    }
+  }
+}
