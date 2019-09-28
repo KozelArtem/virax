@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../config/app.json');
 
+const { Role, Sequelize } = require('../models');
+
 const { user: userSvc, validator, mailer: mailerSvc } = require('../services');
 
 const { isEmail, minLength } = validator;
@@ -181,9 +183,26 @@ const confirm = async (req, res) => {
   }
 };
 
+const getRoles = async (req, res) => {
+  try {
+    const roles = await Role.findAll({
+      where: {
+        name: {
+          [Sequelize.Op.not]: 'Admin',
+        },
+      },
+    });
+
+    res.send({ roles });
+  } catch (err) {
+    res.send(500).send({ message: 'Something went wrong. Try again later.' });
+  }
+};
+
 module.exports = {
   login,
   register,
   // logout,
   confirm,
+  getRoles,
 };

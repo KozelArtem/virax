@@ -17,7 +17,7 @@ const generateMailOptions = (to, subject, text, html) => {
 module.exports = {
   sendActivation: async (to, code) => {
     const message = `<h1>To activate your account, click on the link 
-     <a href="${config.host}/confirm?code=${code}">Activate</a></h1>`;
+     <a href="${config.host}/api/confirm?code=${code}">Activate</a></h1>`;
 
     const mailOptions = generateMailOptions(
       to,
