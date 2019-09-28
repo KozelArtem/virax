@@ -1,11 +1,14 @@
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const passport = require('./lib/passport');
 const routes = require('./routes');
 
 const app = express();
+
+app.use(cors());
 
 app.use(passport.initialize());
 
