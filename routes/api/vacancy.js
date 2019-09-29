@@ -7,6 +7,7 @@ const { loadCompany } = loader;
 const ctrl = require('../../controllers/vacancy');
 
 router.get('/', ctrl.getList);
+router.get('/search', ctrl.search);
 router.get('/:vacancyId', ctrl.getById);
 
 router.post('/', loadCompany, ctrl.create);

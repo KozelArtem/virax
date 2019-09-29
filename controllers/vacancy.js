@@ -21,7 +21,7 @@ const getById = async (req, res) => {
     res.send(vacancy || {});
   } catch (err) {
     console.log(err);
-    
+
     res
       .status(500)
       .send({ message: 'Something went wrong. Please try again later' });
@@ -31,21 +31,23 @@ const getById = async (req, res) => {
 const create = async (req, res) => {
   const { name, description, status, skills } = req.body;
 
-console.log(skills);
-
+  console.log(skills);
 
   try {
-    const vacancy = await vacancySvc.create({
-      name,
-      description,
-      status,
-      companyId: req.company.id,
-    }, skills);
+    const vacancy = await vacancySvc.create(
+      {
+        name,
+        description,
+        status,
+        companyId: req.company.id,
+      },
+      skills,
+    );
 
     res.send(vacancy || {});
   } catch (err) {
     console.log(err);
-    
+
     res
       .status(500)
       .send({ message: 'Something went wrong. Please try again later' });
@@ -76,9 +78,33 @@ const update = async (req, res) => {
   }
 };
 
+
+const search = async (req, res) => {
+  const search = req.query.search;
+
+  if (!search) {
+    res.status(400).send({
+      message: 'Search query is required',
+      fields: ['search'],
+    });
+
+    return;
+  }
+
+  try {
+    const vacancies = await vacancySvc.search(search);
+
+    res.send(vacancies || []);
+  } catch (err) {
+    console.log(err);
+    
+  }
+};
+
 module.exports = {
   getList,
   getById,
   create,
   update,
+  search,
 };

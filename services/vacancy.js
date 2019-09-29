@@ -1,5 +1,5 @@
 const Promise = require('bluebird');
-const { col } = require('sequelize');
+const { col, Op } = require('sequelize');
 
 const { Vacancy, Company, Skill, sequelize } = require('../models');
 
@@ -22,6 +22,7 @@ module.exports = {
 
   getById: (id) => {
     return Vacancy.findByPk(id, {
+      where: { status: 'active' },
       include: [
         {
           model: Company,
@@ -74,5 +75,25 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+
+  search: async (search) => {
+    return Vacancy.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.substring]: search,
+            },
+          },
+          {
+            description: {
+              [Op.substring]: search,
+            },
+          },
+        ],
+        status: 'active',
+      },
+    });
   },
 };
