@@ -1,12 +1,10 @@
-const router = require('express').Router();
+const passport = require('passport');
 
-const auth = require('../../middleware/auth');
+const router = require('express').Router();
 
 const ctrl = require('../../controllers/student');
 
-const { requireAuth } = auth;
-
-router.get('/:studentId', requireAuth, ctrl.get);
+router.get('/:studentId', passport.authenticate('jwt', { session: false }), ctrl.get);
 
 // router.get('/:studentId/vacancy');
 

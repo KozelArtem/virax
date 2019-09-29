@@ -3,6 +3,7 @@ const validator = require('./validator');
 const mailer = require('./mailer');
 const student = require('./student');
 const company = require('./company');
+const vacancy = require('./vacancy');
 
 module.exports = {
   user,
@@ -10,4 +11,5 @@ module.exports = {
   mailer,
   student,
   company,
+  vacancy,
 };

@@ -14,8 +14,14 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      address: {
+        type: Sequelize.STRING,
+      },
       imagePath: {
         type: Sequelize.STRING,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

@@ -1,6 +1,5 @@
 const { student: studentSvc, company: companySvc } = require('../services');
 
-
 const get = async (req, res) => {
   const roleId = req.user.roleId;
   let profile = {};
@@ -13,7 +12,7 @@ const get = async (req, res) => {
     }
 
     res.send(profile || { roleId });
-  } catch(err) {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
@@ -52,20 +51,28 @@ const createOrUpdate = async (req, res) => {
 
       return;
     } else if (roleId === 2) {
-      const profile = await companySvc.getByUserId(req.user.id);
+      const { imagePath, name, description, address } = req.body;
+
+      profile = await companySvc.createOrUpdateByUserId(req.user.id, {
+        userId: req.user.id,
+        name,
+        description,
+        imagePath,
+        address,
+      });
+
+      profile = await companySvc.getById(profile.id);
 
       res.send(profile || { roleId });
 
       return;
     }
-  } catch(err) {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-
-
 module.exports = {
   get,
   createOrUpdate,
-}
+};
